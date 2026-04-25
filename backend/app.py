@@ -1,6 +1,7 @@
 import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+
 from github_analyzer import analyze_github
 from resume_parser import parse_resume
 from matcher import match_companies
@@ -12,26 +13,27 @@ from leetcode_analyzer import analyze_leetcode
 
 app = Flask(__name__)
 
-# ── SECURITY CONFIG ───────────────────────────────────
-# only allow requests from your Vercel frontend
+# ── CORS CONFIG (FIXED) ───────────────────────────────
 ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://place-iq.vercel.app",     # ← correct!
-    "https://place-iq-*.vercel.app",
+    "https://place-iq.vercel.app",
+    "https://place-iq-lake.vercel.app"   # ✅ important
 ]
 
-CORS(app, origins=ALLOWED_ORIGINS)
+CORS(app, resources={
+    r"/*": {"origins": ALLOWED_ORIGINS}
+})
 
-# max resume upload size: 5MB
-app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
+# ── CONFIG ───────────────────────────────────────────
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB
 
-# ── HEALTH CHECK (for keep-alive ping) ───────────────
+# ── HEALTH CHECK ─────────────────────────────────────
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok", "app": "PlaceIQ"})
 
-# ── ERROR HANDLERS ────────────────────────────────────
+# ── ERROR HANDLERS ───────────────────────────────────
 @app.errorhandler(413)
 def file_too_large(e):
     return jsonify({"error": "File too large. Max size is 5MB."}), 413
@@ -44,7 +46,8 @@ def server_error(e):
 def not_found(e):
     return jsonify({"error": "Endpoint not found."}), 404
 
-# ── ROUTES ────────────────────────────────────────────
+# ── ROUTES ───────────────────────────────────────────
+
 @app.route("/analyze/github", methods=["POST"])
 def github():
     data = request.json
@@ -52,14 +55,16 @@ def github():
         return jsonify({"error": "Username is required"}), 400
     return jsonify(analyze_github(data.get("username")))
 
-@app.route("/analyze/resume", methods=["POST"])
+@app.route("/analyze/resume", methods=["POST", "OPTIONS"])  # ✅ OPTIONS added
 def resume():
     if "resume" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
+
     file = request.files["resume"]
+
     if not file.filename.endswith(".pdf"):
         return jsonify({"error": "Only PDF files are accepted"}), 400
-    # file is processed in memory — never saved to disk
+
     return jsonify(parse_resume(file))
 
 @app.route("/match", methods=["POST"])
@@ -98,8 +103,7 @@ def leetcode():
         return jsonify({"error": "LeetCode username required"}), 400
     return jsonify(analyze_leetcode(data.get("username")))
 
-# ── RUN ───────────────────────────────────────────────
+# ── RUN ──────────────────────────────────────────────
 if __name__ == "__main__":
-    # local dev only — Render uses gunicorn
     debug = os.getenv("FLASK_ENV") == "development"
     app.run(debug=debug, host='0.0.0.0', port=5000)
