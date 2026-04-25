@@ -12,7 +12,7 @@ import SkillRoadmap from './components/SkillRoadmap';
 import DSATracker from './components/DSATracker';
 import ProgressDashboard from './components/ProgressDashboard';
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = 'https://placeiq-ogr7.onrender.com';
 
 function App() {
   const [resumeData, setResumeData]     = useState(null);
