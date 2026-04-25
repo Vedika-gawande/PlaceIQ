@@ -15,10 +15,10 @@ app = Flask(__name__)
 # ── SECURITY CONFIG ───────────────────────────────────
 # only allow requests from your Vercel frontend
 ALLOWED_ORIGINS = [
-    "http://localhost:5173",          # local dev
-    "http://localhost:3000",          # local dev alt
-    "https://placeiq.vercel.app",     # your Vercel URL — update this!
-    "https://placeiq-*.vercel.app",   # Vercel preview deployments
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://place-iq.vercel.app",     # ← correct!
+    "https://place-iq-*.vercel.app",
 ]
 
 CORS(app, origins=ALLOWED_ORIGINS)
