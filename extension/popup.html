@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlaceIQ</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 320px;
+      background: #0B0F14;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      color: #E5E7EB;
+      padding: 24px 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.22);
+      border-radius: 999px;
+      padding: 3px 12px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #22C55E;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #22C55E;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+      background: linear-gradient(160deg, #fff 10%, #6B7280 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: #9CA3AF;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      width: 100%;
+      background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: 0.01em;
+      box-shadow: 0 4px 16px rgba(34,197,94,0.25);
+      transition: all 0.2s ease;
+      margin-bottom: 10px;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #4ADE80 0%, #22C55E 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(34,197,94,0.35);
+    }
+
+    .btn svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin: 16px 0;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: #4B5563;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4B5563;
+      flex-shrink: 0;
+    }
+
+    .status-dot.online  { background: #22C55E; box-shadow: 0 0 6px rgba(34,197,94,0.5); }
+    .status-dot.offline { background: #F87171; }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: #6B7280;
+    }
+
+    .feature::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #22C55E;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="badge">AI-Powered</div>
+
+  <h1>Place<span>IQ</span></h1>
+  <p>Know exactly where you stand before placement season begins.</p>
+
+  <button class="btn" id="openBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+      <polyline points="15 3 21 3 21 9"/>
+      <line x1="10" y1="14" x2="21" y2="3"/>
+    </svg>
+    Open PlaceIQ
+  </button>
+
+  <div class="divider"></div>
+
+  <div class="status">
+    <div class="status-dot" id="statusDot"></div>
+    <span id="statusText">Checking backend...</span>
+  </div>
+
+  <div class="features">
+    <div class="feature">Resume parsing + GitHub analysis</div>
+    <div class="feature">40 company match results</div>
+    <div class="feature">AI insights + mock interview</div>
+    <div class="feature">DSA tracker + skill roadmap</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

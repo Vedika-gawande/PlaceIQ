@@ -1,0 +1,871 @@
+{
+  "Google": {
+    "pattern": "Heavy on hard DSA, system design, and problem solving. Multiple coding rounds with follow-up questions. Expect to optimize solutions.",
+    "focus_areas": ["graphs", "dynamic programming", "system design", "trees", "hard algorithms"],
+    "real_questions": [
+      "Find the shortest path in a weighted graph with negative edges",
+      "Design a URL shortener like bit.ly",
+      "Given a stream of integers, find the median at any point",
+      "Word Break II — return all possible sentences",
+      "Design Google Drive file system",
+      "Serialize and deserialize a binary tree",
+      "Find all strongly connected components in a directed graph"
+    ],
+    "domain_questions": [
+      "How would you design Google Search autocomplete?",
+      "How does PageRank algorithm work?",
+      "Design a distributed cache system"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "phone screen", "virtual onsite x4", "hiring committee"]
+  },
+  "Microsoft": {
+    "pattern": "Focus on DSA and problem solving. Strong emphasis on code quality and edge cases. Behavioral questions based on growth mindset.",
+    "focus_areas": ["trees", "graphs", "dynamic programming", "arrays", "system design"],
+    "real_questions": [
+      "Clone a linked list with random pointers",
+      "Find the lowest common ancestor of two nodes in BST",
+      "Implement LRU Cache",
+      "Maximum sum subarray (Kadane's algorithm)",
+      "Check if a binary tree is a valid BST",
+      "Design a parking lot system",
+      "Merge K sorted linked lists"
+    ],
+    "domain_questions": [
+      "How would you design Microsoft Teams?",
+      "Explain how Azure load balancing works",
+      "What is the difference between process and thread?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Amazon": {
+    "pattern": "Leadership principles are as important as DSA. Every answer should tie back to Amazon LPs. DSA is medium difficulty focused.",
+    "focus_areas": ["arrays", "trees", "dynamic programming", "sliding window", "leadership principles"],
+    "real_questions": [
+      "Two Sum — find pair with target sum",
+      "Number of Islands — BFS/DFS",
+      "LRU Cache implementation",
+      "Find K closest points to origin",
+      "Maximum product subarray",
+      "Design Amazon's order management system",
+      "Top K frequent elements"
+    ],
+    "domain_questions": [
+      "Tell me about a time you had to make a decision with incomplete data (LP: Bias for Action)",
+      "Describe a time you disagreed with your manager (LP: Have Backbone)",
+      "How would you design Amazon's recommendation system?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "bar raiser", "HR"]
+  },
+  "Deutsche Bank": {
+    "pattern": "Mix of SQL, basic DSA, and finance domain knowledge. Aptitude and logical reasoning in early rounds. Not as hard as product companies.",
+    "focus_areas": ["sql", "python", "basic data structures", "finance concepts", "aptitude"],
+    "real_questions": [
+      "Write SQL to find the second highest salary in each department",
+      "Explain ACID properties with examples",
+      "Reverse a linked list iteratively and recursively",
+      "Find duplicates in an array without extra space",
+      "Write a Python function to check if a string is a palindrome",
+      "What is a deadlock? How do you prevent it?",
+      "Explain the difference between stack and heap memory"
+    ],
+    "domain_questions": [
+      "What is a derivative in finance?",
+      "Explain the difference between equity and debt",
+      "What is risk management in banking?",
+      "What is the role of a central bank?"
+    ],
+    "aptitude": [
+      "A train travels 60 km/h for 2 hours and 80 km/h for 3 hours. Find average speed.",
+      "If 6 workers complete a job in 4 days, how many workers to complete in 3 days?",
+      "Series completion: 2, 6, 12, 20, 30, ?"
+    ],
+    "rounds": ["online test", "aptitude round", "technical round 1", "technical round 2", "HR"]
+  },
+  "Razorpay": {
+    "pattern": "Strong focus on backend systems, REST APIs, and payment domain. DSA is medium level. System design for senior roles.",
+    "focus_areas": ["system design", "rest api", "python", "javascript", "payment systems"],
+    "real_questions": [
+      "Design a rate limiter for an API",
+      "Implement a payment retry mechanism with exponential backoff",
+      "Find the longest substring without repeating characters",
+      "Design a webhook delivery system",
+      "Implement a simple in-memory key-value store",
+      "How would you handle duplicate payment requests?",
+      "Validate a credit card number using Luhn algorithm"
+    ],
+    "domain_questions": [
+      "What happens when you swipe a credit card? Explain the full flow.",
+      "What is PCI-DSS compliance?",
+      "How does UPI work under the hood?",
+      "What is idempotency and why is it important in payments?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "culture fit", "HR"]
+  },
+  "Zepto": {
+    "pattern": "Fast-paced startup culture. Focus on Node.js, MongoDB, React. Quick delivery mindset. DSA is easy to medium.",
+    "focus_areas": ["node.js", "mongodb", "react", "system design", "arrays"],
+    "real_questions": [
+      "Design a real-time inventory management system",
+      "Find the maximum subarray sum",
+      "Implement debounce and throttle functions in JavaScript",
+      "Design a delivery routing system",
+      "Flatten a nested array in JavaScript",
+      "How would you handle 10,000 concurrent orders?",
+      "Implement event emitter in Node.js"
+    ],
+    "domain_questions": [
+      "How would you optimize delivery routes for minimum time?",
+      "How does Zepto achieve 10-minute delivery?",
+      "What is the CAP theorem?",
+      "How would you handle flash sales with high concurrency?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Flipkart": {
+    "pattern": "Strong DSA focus. System design for all levels. Questions often involve large scale e-commerce scenarios.",
+    "focus_areas": ["data structures", "algorithms", "system design", "java", "distributed systems"],
+    "real_questions": [
+      "Design Flipkart's search autocomplete",
+      "Find the Kth largest element in an array",
+      "Implement a consistent hashing ring",
+      "Design a flash sale system handling 1M concurrent users",
+      "Longest palindromic substring",
+      "Design a notification system",
+      "Detect cycle in a directed graph"
+    ],
+    "domain_questions": [
+      "How would you design Flipkart's recommendation engine?",
+      "How does Flipkart handle Big Billion Days traffic?",
+      "What is eventual consistency?",
+      "How would you design a warehousing system?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Infosys": {
+    "pattern": "Easy to moderate DSA. Focus on fundamentals — OOP, DBMS, OS, CN. Aptitude and verbal ability tested heavily in early rounds.",
+    "focus_areas": ["oops", "dbms", "operating systems", "computer networks", "basic dsa"],
+    "real_questions": [
+      "Explain OOP principles with real examples",
+      "Write SQL for third highest salary",
+      "What is normalization? Explain 1NF, 2NF, 3NF",
+      "Reverse a string without built-in functions",
+      "What is a semaphore? How is it different from mutex?",
+      "Explain TCP vs UDP with examples",
+      "What is virtual memory?"
+    ],
+    "domain_questions": [
+      "What is Agile methodology?",
+      "What is the Software Development Life Cycle?",
+      "Explain client-server architecture"
+    ],
+    "aptitude": [
+      "Quantitative aptitude: time, speed, distance problems",
+      "Logical reasoning: blood relations, seating arrangements",
+      "Verbal ability: reading comprehension, fill in the blanks"
+    ],
+    "rounds": ["online test", "technical round", "HR"]
+  },
+  "TCS": {
+    "pattern": "TCS NQT is the gateway. Easy coding questions. Strong focus on aptitude, verbal, and reasoning. Technical interview is basic.",
+    "focus_areas": ["basic programming", "aptitude", "verbal ability", "logical reasoning"],
+    "real_questions": [
+      "Print Fibonacci series up to N terms",
+      "Check if a number is prime",
+      "Find factorial using recursion",
+      "Reverse a number",
+      "Check if two strings are anagrams",
+      "Find sum of digits of a number",
+      "Pattern printing programs"
+    ],
+    "domain_questions": [
+      "What is cloud computing?",
+      "Explain the difference between C and Java",
+      "What is an operating system?"
+    ],
+    "aptitude": [
+      "Number series completion",
+      "Profit and loss problems",
+      "Time and work problems",
+      "Blood relation questions",
+      "Coding-decoding"
+    ],
+    "rounds": ["TCS NQT", "technical round", "managerial round", "HR"]
+  },
+  "Wipro": {
+    "pattern": "Similar to TCS. NLTH (National Level Test for Hiring). Easy DSA, basic CS concepts, moderate aptitude.",
+    "focus_areas": ["basic dsa", "oops", "aptitude", "cs fundamentals"],
+    "real_questions": [
+      "Swap two numbers without temp variable",
+      "Find largest element in array",
+      "Check palindrome string",
+      "Binary search implementation",
+      "What is inheritance in OOP?",
+      "Explain polymorphism with example",
+      "What is a foreign key in SQL?"
+    ],
+    "domain_questions": [
+      "What is the difference between website and web application?",
+      "What is an API?",
+      "Explain HTTP methods"
+    ],
+    "aptitude": [
+      "Verbal ability: synonyms, antonyms",
+      "Quantitative: percentages, ratios",
+      "Logical: number series, analogies"
+    ],
+    "rounds": ["online test", "technical round", "HR"]
+  },
+  "Swiggy": {
+    "pattern": "Backend heavy. Focus on distributed systems, real-time data, and food delivery domain. Medium to hard DSA.",
+    "focus_areas": ["system design", "docker", "kubernetes", "kafka", "python"],
+    "real_questions": [
+      "Design Swiggy's real-time order tracking system",
+      "Implement a food delivery matching algorithm",
+      "Design a surge pricing system",
+      "Find the nearest restaurant using geohashing",
+      "Implement a distributed rate limiter",
+      "Design Swiggy's notification system",
+      "How to handle restaurant going offline mid-order?"
+    ],
+    "domain_questions": [
+      "What is geohashing and how is it used in location services?",
+      "How would you assign delivery partners to orders optimally?",
+      "What is the ETA calculation algorithm?",
+      "How does Swiggy handle peak hour load?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Zomato": {
+    "pattern": "Product thinking + DSA. Questions often have real-world food delivery context. React and backend both tested.",
+    "focus_areas": ["react", "python", "system design", "javascript", "sql"],
+    "real_questions": [
+      "Design Zomato's restaurant search with filters",
+      "Implement infinite scroll for restaurant listing",
+      "Design a review and rating system",
+      "LRU cache for restaurant data",
+      "Find top K rated restaurants in a city",
+      "Design a coupon/discount system",
+      "Implement real-time order status updates"
+    ],
+    "domain_questions": [
+      "How would you prevent fake reviews on Zomato?",
+      "How does Zomato's recommendation algorithm work?",
+      "How would you handle a restaurant going viral suddenly?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Paytm": {
+    "pattern": "Fintech + Java heavy. Spring Boot, MySQL, microservices. Payment domain knowledge expected.",
+    "focus_areas": ["java", "spring boot", "mysql", "microservices", "payment systems"],
+    "real_questions": [
+      "Design Paytm Wallet transaction system",
+      "How to handle concurrent transactions safely?",
+      "Implement a transaction rollback mechanism",
+      "Design a KYC verification system",
+      "Find duplicate transactions in a dataset",
+      "Design Paytm's QR code payment flow",
+      "Implement connection pooling"
+    ],
+    "domain_questions": [
+      "What is a payment gateway vs payment processor?",
+      "How does NPCI work?",
+      "What is two-factor authentication?",
+      "Explain IMPS, NEFT, RTGS differences"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "PhonePe": {
+    "pattern": "Microservices, Kafka, high throughput systems. UPI and payments knowledge. Strong backend focus.",
+    "focus_areas": ["microservices", "kafka", "java", "system design", "upi"],
+    "real_questions": [
+      "Design PhonePe's UPI payment flow",
+      "Handle exactly-once delivery in payment messages",
+      "Design a fraud detection system for transactions",
+      "Implement circuit breaker pattern",
+      "Design a ledger system for wallet",
+      "How to scale to 100M transactions/day?",
+      "Implement saga pattern for distributed transactions"
+    ],
+    "domain_questions": [
+      "How does UPI work end to end?",
+      "What is NPCI's role in UPI?",
+      "How would you detect and prevent fraudulent transactions?",
+      "What is a virtual payment address (VPA)?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "CRED": {
+    "pattern": "Premium product culture. Focus on product thinking, clean code, and system design. React + Python + AWS.",
+    "focus_areas": ["react", "python", "aws", "system design", "product thinking"],
+    "real_questions": [
+      "Design CRED's bill payment reminder system",
+      "Implement a credit score tracking feature",
+      "Design a cashback rewards system",
+      "Build a referral system with fraud prevention",
+      "Design CRED's statement analysis feature",
+      "Implement A/B testing framework",
+      "Design a notification personalization system"
+    ],
+    "domain_questions": [
+      "How does a credit card bill payment work?",
+      "What is a CIBIL score and how is it calculated?",
+      "How would you gamify credit card payments?",
+      "What makes CRED's UX premium?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "culture fit", "HR"]
+  },
+  "Groww": {
+    "pattern": "Fintech + React heavy. Stock market and investment domain. Clean code and system design.",
+    "focus_areas": ["react", "python", "java", "sql", "stock market"],
+    "real_questions": [
+      "Design a real-time stock price feed",
+      "Implement a portfolio tracker",
+      "Design a SIP (Systematic Investment Plan) calculator",
+      "Find best time to buy and sell stocks",
+      "Design a trade execution system",
+      "Implement market order vs limit order logic",
+      "Design a mutual fund NAV update system"
+    ],
+    "domain_questions": [
+      "What is NAV in mutual funds?",
+      "How does a stock exchange work?",
+      "What is SEBI and what does it regulate?",
+      "Explain demat account vs trading account"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Dream11": {
+    "pattern": "Sports + gaming domain. High concurrency systems. Redis and Kafka for real-time data. DSA is medium.",
+    "focus_areas": ["python", "redis", "kafka", "system design", "real-time systems"],
+    "real_questions": [
+      "Design Dream11's team selection scoring system",
+      "Handle 10 million users joining a contest simultaneously",
+      "Implement a leaderboard that updates in real-time",
+      "Design a fantasy points calculation engine",
+      "Find top K scorers from a stream of score updates",
+      "Design a contest matching system",
+      "Implement distributed locking for contest entry"
+    ],
+    "domain_questions": [
+      "How would you prevent multiple entries from same device?",
+      "How does Dream11 calculate fantasy points?",
+      "What is the tech challenge during IPL match day?",
+      "How to ensure fairness in team selection?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Meesho": {
+    "pattern": "Social commerce focus. React, Node, MongoDB. Reseller network and supply chain domain.",
+    "focus_areas": ["react", "node", "mongodb", "python", "sql"],
+    "real_questions": [
+      "Design Meesho's reseller commission system",
+      "Implement a product catalog with search",
+      "Design a social sharing mechanism for products",
+      "Build a supplier onboarding workflow",
+      "Design a return and refund management system",
+      "Implement a dynamic pricing system",
+      "Design Meesho's logistics partner integration"
+    ],
+    "domain_questions": [
+      "What is social commerce?",
+      "How does Meesho's reseller model work?",
+      "How would you onboard suppliers from tier 2/3 cities?",
+      "What is the last-mile delivery problem?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Atlassian": {
+    "pattern": "Product quality focus. Code reviews are strict. Collaboration tools domain. System design important.",
+    "focus_areas": ["python", "java", "system design", "rest api", "docker"],
+    "real_questions": [
+      "Design Jira's ticket assignment system",
+      "Implement real-time collaborative editing (like Google Docs)",
+      "Design a plugin architecture for Confluence",
+      "Build a workflow automation engine",
+      "Design Bitbucket's code review system",
+      "Implement permission and access control system",
+      "Design a notification fan-out system"
+    ],
+    "domain_questions": [
+      "How does operational transformation work in collaborative editing?",
+      "What is CRDT and when would you use it?",
+      "How would you design a webhook system?",
+      "What is the strangler fig pattern?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "values interview", "HR"]
+  },
+  "Uber": {
+    "pattern": "Geo-spatial systems, real-time matching, high scale. Strong system design. Medium to hard DSA.",
+    "focus_areas": ["system design", "graphs", "algorithms", "distributed systems", "geospatial"],
+    "real_questions": [
+      "Design Uber's driver-rider matching algorithm",
+      "Implement surge pricing based on supply-demand",
+      "Find shortest path considering real-time traffic",
+      "Design Uber's ETA calculation system",
+      "Implement geohashing for location search",
+      "Design a trip ledger system",
+      "Handle driver going offline mid-trip"
+    ],
+    "domain_questions": [
+      "How does Uber's dispatch system work?",
+      "What is the algorithm behind surge pricing?",
+      "How does Uber Maps differ from Google Maps?",
+      "How would you detect fraudulent trips?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "technical round 3", "HR"]
+  },
+  "Adobe": {
+    "pattern": "DSA + creative tools domain. Image processing algorithms. C++ and Java preferred. System design for senior.",
+    "focus_areas": ["data structures", "algorithms", "c++", "java", "image processing"],
+    "real_questions": [
+      "Implement image rotation algorithm",
+      "Design Adobe Photoshop's undo/redo system",
+      "Find connected components in an image (flood fill)",
+      "Design a collaborative design tool like Figma",
+      "Implement a PDF rendering engine",
+      "Design a font rendering system",
+      "Serialize a complex document structure"
+    ],
+    "domain_questions": [
+      "How does JPEG compression work?",
+      "What is the difference between raster and vector graphics?",
+      "How does Photoshop's layer system work internally?",
+      "What is anti-aliasing?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Salesforce": {
+    "pattern": "Java + Apex (Salesforce's own language). CRM domain. REST APIs and integration heavy.",
+    "focus_areas": ["java", "javascript", "rest api", "sql", "crm concepts"],
+    "real_questions": [
+      "Design a CRM customer 360 view",
+      "Implement a lead scoring algorithm",
+      "Design a sales pipeline tracking system",
+      "Build a reporting and analytics dashboard",
+      "Implement role-based access control",
+      "Design a bulk data import system",
+      "Build an email automation workflow"
+    ],
+    "domain_questions": [
+      "What is CRM and why do companies need it?",
+      "What is the difference between a lead and an opportunity?",
+      "How does Salesforce's multi-tenant architecture work?",
+      "What is a governor limit in Salesforce?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Postman": {
+    "pattern": "API-first company. Deep REST/GraphQL knowledge. React + Node + MongoDB. Developer tools mindset.",
+    "focus_areas": ["rest api", "javascript", "react", "node", "mongodb"],
+    "real_questions": [
+      "Design Postman's API collection sharing system",
+      "Implement a request interceptor middleware",
+      "Design an API mocking system",
+      "Build a test assertion engine for API responses",
+      "Implement OAuth 2.0 flow",
+      "Design an API versioning system",
+      "Build a real-time API monitoring dashboard"
+    ],
+    "domain_questions": [
+      "What is the difference between REST and GraphQL?",
+      "Explain OAuth 2.0 flows",
+      "What is API rate limiting and how do you implement it?",
+      "What is idempotency in HTTP methods?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "BrowserStack": {
+    "pattern": "Testing infrastructure domain. Selenium, browser compatibility, cloud device farms.",
+    "focus_areas": ["python", "javascript", "selenium", "testing", "rest api"],
+    "real_questions": [
+      "Design a distributed browser testing infrastructure",
+      "Implement a screenshot comparison algorithm",
+      "Design a device farm allocation system",
+      "Build a test result aggregation system",
+      "Implement parallel test execution framework",
+      "Design a flaky test detection system",
+      "Build a network throttling simulation"
+    ],
+    "domain_questions": [
+      "How does Selenium WebDriver work internally?",
+      "What is cross-browser testing?",
+      "How would you detect visual regressions?",
+      "What is the difference between unit, integration, and E2E testing?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Zoho": {
+    "pattern": "Strong fundamentals. Written test with DSA and CS basics. No system design. Product company culture.",
+    "focus_areas": ["data structures", "algorithms", "java", "c++", "sql"],
+    "real_questions": [
+      "Implement a stack using queues",
+      "Find the longest common subsequence",
+      "Design a simple in-memory database",
+      "Implement a calculator with operator precedence",
+      "Find all permutations of a string",
+      "Implement a trie for autocomplete",
+      "Design a simple version control system"
+    ],
+    "domain_questions": [
+      "What makes Zoho different from Salesforce?",
+      "Explain SaaS vs on-premise software",
+      "What is multi-tenancy?"
+    ],
+    "aptitude": [
+      "Written test: coding on paper",
+      "Puzzles and logical reasoning",
+      "Basic math and series problems"
+    ],
+    "rounds": ["written test", "coding round", "technical round", "HR"]
+  },
+  "Freshworks": {
+    "pattern": "Full stack focus. Ruby on Rails + React. Customer support domain. Product thinking valued.",
+    "focus_areas": ["javascript", "react", "ruby", "rest api", "sql"],
+    "real_questions": [
+      "Design a customer support ticket routing system",
+      "Implement a chatbot decision tree",
+      "Design a customer satisfaction score (CSAT) system",
+      "Build a SLA (Service Level Agreement) tracker",
+      "Design an omnichannel messaging platform",
+      "Implement a knowledge base search",
+      "Build a customer journey tracking system"
+    ],
+    "domain_questions": [
+      "What is omnichannel customer support?",
+      "How does a helpdesk ticketing system work?",
+      "What is Net Promoter Score (NPS)?",
+      "How would you reduce customer churn?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Ola": {
+    "pattern": "Similar to Uber. Ride-sharing + EV focus now. Real-time systems, geospatial, microservices.",
+    "focus_areas": ["python", "java", "microservices", "kafka", "geospatial"],
+    "real_questions": [
+      "Design Ola's cab booking system",
+      "Implement a dynamic pricing engine",
+      "Design a driver incentive calculation system",
+      "Build a real-time trip tracking system",
+      "Design Ola's EV charging station locator",
+      "Implement a carpooling matching algorithm",
+      "Design a driver earnings dashboard"
+    ],
+    "domain_questions": [
+      "How does Ola's driver-rider matching differ from Uber?",
+      "What are the challenges of EV fleet management?",
+      "How would you optimize driver positioning?",
+      "What is geofencing and how is it used?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "InMobi": {
+    "pattern": "AdTech domain. Data pipelines, ML models, real-time bidding. Python + Spark + Scala.",
+    "focus_areas": ["python", "machine learning", "data structures", "algorithms", "spark"],
+    "real_questions": [
+      "Design a real-time bidding system for ads",
+      "Implement click-through rate prediction",
+      "Design an ad targeting system",
+      "Build a data pipeline for ad impressions",
+      "Implement A/B testing for ad variants",
+      "Design a frequency capping system",
+      "Find top K advertisers by spend"
+    ],
+    "domain_questions": [
+      "What is programmatic advertising?",
+      "How does real-time bidding (RTB) work?",
+      "What is CPM, CPC, CPA?",
+      "How does ad fraud detection work?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Navi Technologies": {
+    "pattern": "Fintech + insurance. Python and Java. Loan processing, credit scoring, insurance domain.",
+    "focus_areas": ["python", "java", "sql", "data structures", "fintech"],
+    "real_questions": [
+      "Design a loan eligibility assessment system",
+      "Implement a credit scoring algorithm",
+      "Design an EMI calculation engine",
+      "Build a KYC document verification flow",
+      "Design a fraud detection system for loans",
+      "Implement a collection management system",
+      "Design a claims processing workflow"
+    ],
+    "domain_questions": [
+      "What is a credit bureau?",
+      "How is EMI calculated?",
+      "What is underwriting in insurance?",
+      "What is LTV (Loan to Value) ratio?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Sharechat": {
+    "pattern": "Social media + vernacular content. ML for content recommendation. High scale systems.",
+    "focus_areas": ["python", "machine learning", "data structures", "kafka", "system design"],
+    "real_questions": [
+      "Design Sharechat's content recommendation feed",
+      "Implement a video transcoding pipeline",
+      "Design a trending topics detection system",
+      "Build a content moderation system",
+      "Design a social graph for follow/follower",
+      "Implement a live streaming system",
+      "Design a spam detection system"
+    ],
+    "domain_questions": [
+      "How does content go viral on social media?",
+      "What is the cold start problem in recommendations?",
+      "How would you handle hate speech detection?",
+      "What challenges come with vernacular content?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Walmart Global Tech": {
+    "pattern": "Large scale retail systems. Data engineering, supply chain, Java heavy. Strong system design.",
+    "focus_areas": ["java", "python", "sql", "data structures", "algorithms"],
+    "real_questions": [
+      "Design Walmart's inventory management system",
+      "Implement a supply chain optimization algorithm",
+      "Design a price comparison system",
+      "Build a demand forecasting model",
+      "Design a warehouse management system",
+      "Implement a checkout system handling Black Friday load",
+      "Design a product search and ranking system"
+    ],
+    "domain_questions": [
+      "What is just-in-time inventory?",
+      "How does Walmart's supply chain work?",
+      "What is the bullwhip effect?",
+      "How would you forecast demand for seasonal products?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "technical round 3", "HR"]
+  },
+  "IBM": {
+    "pattern": "Enterprise software. Cloud (IBM Cloud), AI (Watson). Java, Python, cloud certifications valued.",
+    "focus_areas": ["python", "java", "cloud", "docker", "machine learning"],
+    "real_questions": [
+      "Design an enterprise data warehouse",
+      "Implement a microservices migration strategy",
+      "Design IBM Watson's question answering system",
+      "Build a cloud cost optimization tool",
+      "Design a hybrid cloud architecture",
+      "Implement a DevOps CI/CD pipeline",
+      "Design an enterprise identity management system"
+    ],
+    "domain_questions": [
+      "What is hybrid cloud?",
+      "What is IBM's approach to AI ethics?",
+      "What is Red Hat OpenShift?",
+      "Explain the difference between IaaS, PaaS, SaaS"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round", "HR"]
+  },
+  "HCL Technologies": {
+    "pattern": "Service company. Basic DSA, CS fundamentals, aptitude. Projects and internships matter a lot.",
+    "focus_areas": ["java", "python", "sql", "oops", "basic dsa"],
+    "real_questions": [
+      "Implement bubble sort and explain complexity",
+      "Write SQL for employees earning above average",
+      "Explain encapsulation with a real example",
+      "Find missing number in array 1 to N",
+      "What is a binary search tree?",
+      "Explain MVC architecture",
+      "What is the difference between GET and POST?"
+    ],
+    "domain_questions": [
+      "What services does HCL provide?",
+      "What is IT infrastructure management?",
+      "What is ITIL framework?"
+    ],
+    "aptitude": [
+      "Basic quantitative aptitude",
+      "Logical reasoning",
+      "English comprehension"
+    ],
+    "rounds": ["online test", "technical round", "HR"]
+  },
+  "Capgemini": {
+    "pattern": "Similar to Infosys/HCL. Pseudo code test + technical interview. CS basics important.",
+    "focus_areas": ["python", "java", "javascript", "oops", "dbms"],
+    "real_questions": [
+      "Write pseudo code for binary search",
+      "Explain OOPS with car example",
+      "What is the difference between abstract class and interface?",
+      "Write SQL to find employees with salary between 30k-50k",
+      "What is normalization and why is it important?",
+      "Explain how HTTP works",
+      "What is the difference between compiler and interpreter?"
+    ],
+    "domain_questions": [
+      "What is digital transformation?",
+      "What does Capgemini do?",
+      "What is cloud migration?"
+    ],
+    "aptitude": [
+      "Pseudo code writing",
+      "Game-based assessment",
+      "Behavioral assessment"
+    ],
+    "rounds": ["online test", "technical round", "HR"]
+  },
+  "Accenture": {
+    "pattern": "Consulting + tech. Communication skills matter as much as technical. Basic DSA and CS fundamentals.",
+    "focus_areas": ["python", "java", "javascript", "cloud", "agile"],
+    "real_questions": [
+      "Explain REST API with an example you built",
+      "What is the difference between SQL and NoSQL?",
+      "Write a program to find duplicates in array",
+      "What is Agile methodology?",
+      "Explain microservices vs monolith",
+      "What is DevOps?",
+      "How does HTTPS work?"
+    ],
+    "domain_questions": [
+      "What is Accenture's business model?",
+      "What is IT consulting?",
+      "What does digital transformation mean for a bank?"
+    ],
+    "aptitude": [
+      "Cognitive ability test",
+      "Situational judgement test",
+      "Personality assessment"
+    ],
+    "rounds": ["online test", "technical round", "HR"]
+  },
+  "Cognizant": {
+    "pattern": "GenC program for freshers. Easy DSA, basic CS. Good communication important.",
+    "focus_areas": ["python", "java", "javascript", "sql", "oops"],
+    "real_questions": [
+      "Check if array is sorted",
+      "Reverse words in a sentence",
+      "What is the difference between stack and queue?",
+      "Write SQL to find duplicate records",
+      "What is polymorphism?",
+      "Explain the MVC design pattern",
+      "What is a RESTful API?"
+    ],
+    "domain_questions": [
+      "What is BPO vs IT services?",
+      "What does Cognizant's GenC program involve?",
+      "What is automation testing?"
+    ],
+    "aptitude": [
+      "Quantitative ability",
+      "Reasoning ability",
+      "English language"
+    ],
+    "rounds": ["online test", "technical round", "HR"]
+  },
+  "Dunzo": {
+    "pattern": "Quick commerce startup. React + Node + Python. Real-time delivery systems.",
+    "focus_areas": ["python", "react", "javascript", "sql", "node"],
+    "real_questions": [
+      "Design Dunzo's hyperlocal delivery system",
+      "Implement a dark store inventory system",
+      "Design a delivery partner assignment algorithm",
+      "Build a real-time order tracking feature",
+      "Design a product availability check system",
+      "Implement a slot booking system",
+      "Design a cart and checkout flow"
+    ],
+    "domain_questions": [
+      "What is hyperlocal delivery?",
+      "What is a dark store?",
+      "How does Dunzo compete with Zepto and Blinkit?",
+      "What is the last mile delivery challenge?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Oracle": {
+    "pattern": "Database and cloud focus. Java heavy. SQL expertise essential. Enterprise software domain.",
+    "focus_areas": ["java", "sql", "c++", "data structures", "database internals"],
+    "real_questions": [
+      "Design a database indexing system",
+      "Implement B-tree operations",
+      "Write complex SQL with window functions",
+      "Design Oracle Cloud's multi-tenant database",
+      "Implement a query optimizer",
+      "Design a transaction log system",
+      "Implement MVCC (Multi-Version Concurrency Control)"
+    ],
+    "domain_questions": [
+      "What is the difference between clustered and non-clustered index?",
+      "How does Oracle's RAC (Real Application Clusters) work?",
+      "What is partitioning in databases?",
+      "Explain Oracle's flashback technology"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "SAP": {
+    "pattern": "ERP domain. Java + ABAP (SAP's language). Business process knowledge important.",
+    "focus_areas": ["python", "java", "rest api", "sql", "erp concepts"],
+    "real_questions": [
+      "Design an ERP module for procurement",
+      "Implement a business rules engine",
+      "Design SAP's financial accounting module",
+      "Build an enterprise reporting system",
+      "Design a workflow approval system",
+      "Implement an audit trail system",
+      "Design a master data management system"
+    ],
+    "domain_questions": [
+      "What is ERP and why do enterprises need it?",
+      "What is SAP S/4HANA?",
+      "What is the difference between SAP ECC and S/4HANA?",
+      "What is in-memory computing?"
+    ],
+    "aptitude": [],
+    "rounds": ["online test", "technical round 1", "technical round 2", "HR"]
+  },
+  "Fujitsu": {
+    "pattern": "Japanese MNC. Formal culture. Basic DSA, SDLC, testing, and project management focus.",
+    "focus_areas": ["java", "javascript", "sql", "testing", "agile"],
+    "real_questions": [
+      "Explain software testing lifecycle",
+      "What is the difference between black box and white box testing?",
+      "Write test cases for a login page",
+      "What is regression testing?",
+      "Explain Agile vs Waterfall methodology",
+      "What is a use case diagram?",
+      "How do you handle bugs in production?"
+    ],
+    "domain_questions": [
+      "What does Fujitsu do in India?",
+      "What is IT infrastructure?",
+      "What is disaster recovery planning?"
+    ],
+    "aptitude": [
+      "Basic aptitude",
+      "Logical reasoning",
+      "Communication skills test"
+    ],
+    "rounds": ["online test", "technical round", "HR"]
+  }
+}
