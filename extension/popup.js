@@ -1,5 +1,5 @@
-const PLACEIQ_URL   = 'http://localhost:5173';
-const BACKEND_URL   = 'http://localhost:5000';
+const PLACEIQ_URL = 'https://place-iq.vercel.app';
+const BACKEND_URL = 'https://placeiq-ogr7.onrender.com';
 
 const openBtn    = document.getElementById('openBtn');
 const statusDot  = document.getElementById('statusDot');
