@@ -157,20 +157,12 @@ npm run dev
 
 ---
 
-## Chrome Extension
 
-Install locally:
-1. Open Chrome → `chrome://extensions/`
-2. Enable **Developer mode**
-3. Click **Load unpacked**
-4. Select the `extension/` folder
-
----
 
 ## Author
 
 **Vedika Gawande**
-2nd Year CSE — Govt. College of Engineering, Chhatrapati Sambhajinagar
+2nd Year CSE — Govt. College of Engineering Aurangabad, Chhatrapati Sambhajinagar
 
 - GitHub: [@Vedika-gawande](https://github.com/Vedika-gawande)
 - Email: vedikagawande91@gmail.com
