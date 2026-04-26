@@ -1,33 +1,27 @@
 const PLACEIQ_URL = 'https://place-iq.vercel.app';
 const BACKEND_URL = 'https://placeiq-ogr7.onrender.com';
 
-const openBtn    = document.getElementById('openBtn');
-const statusDot  = document.getElementById('statusDot');
-const statusText = document.getElementById('statusText');
-
-// open PlaceIQ in a new tab
-openBtn.addEventListener('click', () => {
+document.getElementById('openBtn').addEventListener('click', () => {
   chrome.tabs.create({ url: PLACEIQ_URL });
   window.close();
 });
 
-// check if Flask backend is running
 async function checkBackend() {
+  const dot  = document.getElementById('statusDot');
+  const text = document.getElementById('statusText');
   try {
     const res = await fetch(`${BACKEND_URL}/health`, {
-      method: 'GET',
-      signal: AbortSignal.timeout(2000)
+      signal: AbortSignal.timeout(3000)
     });
-
     if (res.ok) {
-      statusDot.classList.add('online');
-      statusText.textContent = 'Backend running — ready to analyze';
+      dot.classList.add('online');
+      text.textContent = 'Backend running — ready!';
     } else {
-      throw new Error('not ok');
+      throw new Error();
     }
   } catch {
-    statusDot.classList.add('offline');
-    statusText.textContent = 'Backend offline — run: python app.py';
+    dot.classList.add('offline');
+    text.textContent = 'Backend offline or starting up...';
   }
 }
 
