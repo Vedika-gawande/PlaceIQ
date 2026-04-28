@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { Zap, Github, Building2, BrainCircuit, ArrowRight, Code2, Map, BarChart2 } from 'lucide-react';
+import { Zap, Github as GithubIcon, Building2, BrainCircuit, ArrowRight, Code2, Map, BarChart2 } from 'lucide-react';
 
 export default function Landing() {
   const navigate = useNavigate();
 
   const features = [
     { icon: <Zap size={18} />,          title: 'Resume Parser',       desc: 'Extracts skills, CGPA and email from your PDF instantly' },
-    { icon: <Github size={18} />,        title: 'GitHub Analyzer',     desc: 'Calculates your GitHub power score from repos and languages' },
+    { icon: <GithubIcon size={18} />,    title: 'GitHub Analyzer',    desc: 'Calculates your GitHub power score from repos and languages' },
     { icon: <Building2 size={18} />,     title: '40 Companies',        desc: 'Matched against real company requirements and cutoffs' },
     { icon: <BrainCircuit size={18} />,  title: 'AI Insights',         desc: 'Personalized placement strategy via Groq LLaMA 3.3 70B' },
     { icon: <Code2 size={18} />,         title: 'Mock Interview',      desc: '15 company-specific questions using real interview patterns' },
