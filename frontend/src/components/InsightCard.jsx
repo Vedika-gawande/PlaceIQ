@@ -48,12 +48,6 @@ export default function InsightCard({ resumeData, githubData, matchResults, apiB
   if (!resumeData || !githubData || !matchResults) return null;
 
   return (
-    <div className="section animate-up">
-      <div className="step-label">
-        <div className="step-number">6</div>
-        <span className="step-title">Placement Strategy</span>
-      </div>
-
       <div className="card">
         <div className="section-title">
           <Zap size={20} />
@@ -233,7 +227,6 @@ export default function InsightCard({ resumeData, githubData, matchResults, apiB
             </button>
           </div>
         )}
-      </div>
     </div>
   );
 }

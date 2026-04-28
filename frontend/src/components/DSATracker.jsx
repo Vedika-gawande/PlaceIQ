@@ -44,12 +44,6 @@ export default function DSATracker({ apiBase }) {
     : [];
 
   return (
-    <div className="section animate-up">
-      <div className="step-label">
-        <div className="step-number">9</div>
-        <span className="step-title">DSA Readiness Tracker</span>
-      </div>
-
       <div className="card">
         <div className="section-title">
           <Code2 size={20} />
@@ -235,7 +229,6 @@ export default function DSATracker({ apiBase }) {
             </button>
           </div>
         )}
-      </div>
-    </div>
+   </div>
   );
 }
