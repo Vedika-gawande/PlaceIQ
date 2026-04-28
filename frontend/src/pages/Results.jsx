@@ -89,12 +89,12 @@ export default function Results({ resumeData, githubData, matchResults, setMatch
         </section>
 
         {/* PROGRESS DASHBOARD */}
-        {matchResults && (
-          <section style={{ marginBottom: '2.5rem' }}>
-            <SectionLabel number="03" title="Progress overview" />
-            <ProgressDashboard resumeData={resumeData} githubData={githubData} matchResults={matchResults} />
-          </section>
-        )}
+       {matchResults && matchResults.length > 0 && (
+  <section style={{ marginBottom: '2.5rem' }}>
+    <SectionLabel number="03" title="Progress overview" />
+    <ProgressDashboard resumeData={resumeData} githubData={githubData} matchResults={matchResults} />
+  </section>
+)}
 
         {/* NEXT */}
         <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>

@@ -10,11 +10,11 @@ import Dsa from './pages/Dsa'
 const API_BASE = 'https://placeiq-ogr7.onrender.com'
 
 export default function App() {
-  const [resumeData, setResumeData]   = useState(null)
-  const [githubData, setGithubData]   = useState(null)
+  const [resumeData, setResumeData]     = useState(null)
+  const [githubData, setGithubData]     = useState(null)
   const [matchResults, setMatchResults] = useState([])
 
-  const isAnalyzed = resumeData && githubData && matchResults.length > 0
+  const isAnalyzed = resumeData && githubData
 
   return (
     <Router>
@@ -39,7 +39,13 @@ export default function App() {
           path="/results"
           element={
             isAnalyzed
-              ? <Results resumeData={resumeData} githubData={githubData} matchResults={matchResults} apiBase={API_BASE} />
+              ? <Results
+                  resumeData={resumeData}
+                  githubData={githubData}
+                  matchResults={matchResults}
+                  setMatchResults={setMatchResults}
+                  apiBase={API_BASE}
+                />
               : <Navigate to="/analyze" replace />
           }
         />
@@ -47,7 +53,12 @@ export default function App() {
           path="/prep"
           element={
             isAnalyzed
-              ? <Prep resumeData={resumeData} githubData={githubData} matchResults={matchResults} apiBase={API_BASE} />
+              ? <Prep
+                  resumeData={resumeData}
+                  githubData={githubData}
+                  matchResults={matchResults}
+                  apiBase={API_BASE}
+                />
               : <Navigate to="/analyze" replace />
           }
         />
@@ -55,7 +66,10 @@ export default function App() {
           path="/dsa"
           element={
             isAnalyzed
-              ? <Dsa apiBase={API_BASE} matchResults={matchResults} />
+              ? <Dsa
+                  apiBase={API_BASE}
+                  matchResults={matchResults}
+                />
               : <Navigate to="/analyze" replace />
           }
         />

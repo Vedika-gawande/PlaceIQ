@@ -11,12 +11,15 @@ const API_BASE = import.meta.env.VITE_API_BASE || 'https://placeiq-ogr7.onrender
 export default function Prep({ resumeData, githubData, matchResults }) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!resumeData || !githubData) {
-      navigate('/analyze');
-    }
-  }, []);
-
+useEffect(() => {
+  if (!resumeData || !githubData) {
+    navigate('/analyze');
+    return;
+  }
+  if (!matchResults || matchResults.length === 0) {
+    navigate('/results');
+  }
+}, []);
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
 
