@@ -23,8 +23,8 @@ def match_companies(student_profile):
         bonus   = student_skills & good_to_have
 
         skill_match  = len(matched) / len(required) if required else 0
-        cgpa_match   = (1 if cgpa >= company.get("min_cgpa", 6.0)
-                        else (cgpa / company.get("min_cgpa", 6.0) if cgpa > 0 else 0))
+        cgpa_match = (1 if cgpa >= company.get("min_cgpa", 6.0)
+              else (cgpa / company.get("min_cgpa", 6.0) if cgpa > 0 else 0.5))
         github_match = min(1, github_score / 70)
         bonus_score  = min(0.1, (len(bonus) / max(len(good_to_have), 1)) * 0.1)
 
