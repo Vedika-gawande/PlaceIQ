@@ -605,3 +605,51 @@ body::after {
   align-items: center;
   gap: 6px;
 }
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .header h1 {
+    font-size: 3rem;
+  }
+
+  .stats-row {
+    flex-wrap: wrap;
+  }
+
+  .stat-box {
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+
+  .match-skills-row {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 2.5rem;
+  }
+
+  .app-container {
+    padding: 1rem 0.75rem 3rem;
+  }
+
+  .stats-row {
+    gap: 0.5rem;
+  }
+}
