@@ -4,7 +4,12 @@ import re
 SKILLS_DB = [
     "python", "java", "javascript", "react", "node", "flask", "django",
     "machine learning", "deep learning", "sql", "mongodb", "docker",
-    "kubernetes", "git", "aws", "azure", "c++", "tensorflow", "pytorch"
+    "kubernetes", "git", "aws", "azure", "c++", "tensorflow", "pytorch",
+    "html", "css", "php", "mysql", "postgresql", "redis", "kafka",
+    "spring boot", "rest api", "typescript", "angular", "vue",
+    "linux", "bash", "scala", "kotlin", "swift", "ruby", "golang",
+    "data structures", "algorithms", "system design", "microservices",
+    "selenium", "testing", "agile", "devops", "cloud", "hadoop", "spark"
 ]
 
 def extract_cgpa(text_lower):
