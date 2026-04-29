@@ -1,6 +1,3 @@
-import json
-import os
-
 def match_companies(student_profile):
     with open(os.path.join(os.path.dirname(__file__), "data", "companies.json")) as f:
         companies = json.load(f)
@@ -8,7 +5,6 @@ def match_companies(student_profile):
     student_skills = set(s.lower() for s in student_profile.get("skills", []))
     github_score   = student_profile.get("github_score", 0)
 
-    # sanitize CGPA once, outside the loop
     raw_cgpa = student_profile.get("cgpa", 0)
     cgpa     = float(raw_cgpa) if raw_cgpa else 0
     cgpa     = cgpa if 0 < cgpa <= 10 else 0
@@ -23,16 +19,23 @@ def match_companies(student_profile):
         bonus   = student_skills & good_to_have
 
         skill_match  = len(matched) / len(required) if required else 0
+
+        # 🔴 NEW: Hard cutoff — skill match < 40% → skip company entirely
+        if skill_match < 0.4:
+            continue
+
         cgpa_match = (1 if cgpa >= company.get("min_cgpa", 6.0)
-              else (cgpa / company.get("min_cgpa", 6.0) if cgpa > 0 else 0.5))
+              else (cgpa / company.get("min_cgpa", 6.0) if cgpa > 0 else 0))
+
         github_match = min(1, github_score / 70)
         bonus_score  = min(0.1, (len(bonus) / max(len(good_to_have), 1)) * 0.1)
 
+        # 🔴 NEW weights: skill_match dominates (70%)
         overall = round(
-            (skill_match * 0.5 + cgpa_match * 0.3 + github_match * 0.2 + bonus_score) * 100,
+            (skill_match * 0.70 + cgpa_match * 0.20 + github_match * 0.10 + bonus_score) * 100,
             1
         )
-        overall = min(overall, 100)
+        overall = min(overall, 99)  # 🔴 100% kabhi nahi — always something to improve
 
         results.append({
             "company":        company["name"],
