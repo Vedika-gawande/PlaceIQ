@@ -22,14 +22,26 @@ def match_companies(student_profile):
         missing = required - student_skills
         bonus   = student_skills & good_to_have
 
-        skill_match  = len(matched) / len(required) if required else 0
-        cgpa_match = (1 if cgpa >= company.get("min_cgpa", 6.0)
-              else (cgpa / company.get("min_cgpa", 6.0) if cgpa > 0 else 0.5))
-        github_match = min(1, github_score / 70)
-        bonus_score  = min(0.1, (len(bonus) / max(len(good_to_have), 1)) * 0.1)
+        # skill match — only count exact matches, no partial
+        skill_match = len(matched) / len(required) if required else 0
 
+        # CGPA match — strict, no free 0.5 default
+        if cgpa == 0:
+            cgpa_match = 0.3  # penalty for missing CGPA
+        elif cgpa >= company.get("min_cgpa", 6.0):
+            cgpa_match = 1.0
+        else:
+            cgpa_match = cgpa / company.get("min_cgpa", 6.0)
+
+        # GitHub match — capped at 70
+        github_match = min(1, github_score / 70)
+
+        # bonus — reduced to 5% max
+        bonus_score = min(0.05, (len(bonus) / max(len(good_to_have), 1)) * 0.05)
+
+        # final score — rebalanced weights
         overall = round(
-            (skill_match * 0.5 + cgpa_match * 0.3 + github_match * 0.2 + bonus_score) * 100,
+            (skill_match * 0.45 + cgpa_match * 0.30 + github_match * 0.20 + bonus_score) * 100,
             1
         )
         overall = min(overall, 100)
