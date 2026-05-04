@@ -1,14 +1,15 @@
 import json
 import os
 
-def match_companies(student_profile):
+def orin_match(student_profile):
     with open(os.path.join(os.path.dirname(__file__), "data", "companies.json")) as f:
         companies = json.load(f)
 
-    student_skills = set(s.lower() for s in student_profile.get("skills", []))
-    github_score   = student_profile.get("github_score", 0)
+    student_skills   = set(s.lower() for s in student_profile.get("skills", []))
+    github_score     = student_profile.get("github_score", 0)
+    preferred_domain = student_profile.get("preferred_domain", "").lower()
+    preferred_type   = student_profile.get("preferred_type", "").lower()
 
-    # sanitize CGPA once, outside the loop
     raw_cgpa = student_profile.get("cgpa", 0)
     cgpa     = float(raw_cgpa) if raw_cgpa else 0
     cgpa     = cgpa if 0 < cgpa <= 10 else 0
@@ -22,29 +23,44 @@ def match_companies(student_profile):
         missing = required - student_skills
         bonus   = student_skills & good_to_have
 
-        # skill match — only count exact matches, no partial
         skill_match = len(matched) / len(required) if required else 0
 
-        # CGPA match — strict, no free 0.5 default
         if cgpa == 0:
-            cgpa_match = 0.3  # penalty for missing CGPA
+            cgpa_match = 0.3
         elif cgpa >= company.get("min_cgpa", 6.0):
             cgpa_match = 1.0
         else:
             cgpa_match = cgpa / company.get("min_cgpa", 6.0)
 
-        # GitHub match — capped at 70
-        github_match = min(1, github_score / 70)
+        github_match = min(1.0, github_score / 70)
+        bonus_score  = min(0.05, (len(bonus) / max(len(good_to_have), 1)) * 0.05)
 
-        # bonus — reduced to 5% max
-        bonus_score = min(0.05, (len(bonus) / max(len(good_to_have), 1)) * 0.05)
+        company_domain = company.get("domain", "").lower()
+        if preferred_domain and company_domain == preferred_domain:
+            domain_score = 0.07
+        elif preferred_domain and preferred_domain in company_domain:
+            domain_score = 0.04
+        else:
+            domain_score = 0.0
 
-        # final score — rebalanced weights
+        company_type = company.get("type", "").lower()
+        type_score   = 0.03 if (preferred_type and company_type == preferred_type) else 0.0
+
+        bonus_depth  = len(bonus) * 0.001
+
         overall = round(
-            (skill_match * 0.45 + cgpa_match * 0.30 + github_match * 0.20 + bonus_score) * 100,
+            (
+                skill_match  * 0.45 +
+                cgpa_match   * 0.25 +
+                github_match * 0.15 +
+                bonus_score  +
+                domain_score +
+                type_score   +
+                bonus_depth
+            ) * 100,
             1
         )
-        overall = min(overall, 100)
+        overall = min(overall, 100.0)
 
         results.append({
             "company":        company["name"],
