@@ -26,9 +26,11 @@ export default function Results({ resumeData, githubData, matchResults, setMatch
     setLoading(true);
     try {
       const payload = {
-        skills:       resumeData.skills || [],
-        cgpa:         resumeData.cgpa || 0,
-        github_score: githubData.github_score || 0
+      skills:           resumeData.skills || [],
+      cgpa:             resumeData.cgpa || 0,
+      github_score:     githubData.github_score || 0,
+      preferred_domain: resumeData.preferred_domain || "product",
+      preferred_type:   resumeData.preferred_type || "startup"
       };
       const res = await axios.post(`${API_BASE}/match`, payload);
       setMatchResults(res.data);
