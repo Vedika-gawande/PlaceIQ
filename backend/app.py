@@ -4,7 +4,7 @@ from flask_cors import CORS
 
 from github_analyzer import analyze_github
 from resume_parser import parse_resume
-from matcher import match_companies
+from matcher import orin_match
 from resume_tips import get_resume_tips
 from ai_insights import get_ai_insights
 from mock_interview import get_mock_questions
@@ -72,7 +72,7 @@ def match():
     data = request.json
     if not data:
         return jsonify({"error": "Profile data required"}), 400
-    return jsonify(match_companies(data))
+    return jsonify(orin_match(data))
 
 @app.route("/analyze/resume-tips", methods=["POST"])
 def resume_tips():
