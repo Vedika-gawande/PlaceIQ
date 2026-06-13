@@ -10,6 +10,7 @@ from ai_insights import get_ai_insights
 from mock_interview import get_mock_questions
 from skill_roadmap import get_skill_roadmap
 from leetcode_analyzer import analyze_leetcode
+from adzuna_jobs import get_jobs
 
 app = Flask(__name__)
 
@@ -103,6 +104,16 @@ def leetcode():
         return jsonify({"error": "LeetCode username required"}), 400
     return jsonify(analyze_leetcode(data.get("username")))
 
+@app.route("/jobs", methods=["POST"])
+def jobs():
+    data = request.json
+    if not data:
+        return jsonify({"error": "Profile data required"}), 400
+    
+    skills = data.get("skills", [])
+    location = data.get("location", "india")
+    
+    return jsonify(get_jobs(skills, location))
 # ── RUN ──────────────────────────────────────────────
 if __name__ == "__main__":
     debug = os.getenv("FLASK_ENV") == "development"

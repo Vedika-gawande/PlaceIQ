@@ -2,8 +2,7 @@ const PLACEIQ_URL = 'https://place-iq.vercel.app';
 const BACKEND_URL = 'https://placeiq-ogr7.onrender.com';
 
 document.getElementById('openBtn').addEventListener('click', () => {
-  chrome.tabs.create({ url: PLACEIQ_URL });
-  window.close();
+  chrome.tabs.create({ url: 'https://place-iq.vercel.app/' });
 });
 
 async function checkBackend() {

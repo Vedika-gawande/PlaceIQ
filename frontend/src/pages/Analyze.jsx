@@ -7,7 +7,7 @@ const API_BASE = import.meta.env.VITE_API_BASE || 'https://placeiq-ogr7.onrender
 
 export default function Analyze({ resumeData, setResumeData, githubData, setGithubData }) {
   const navigate = useNavigate();
-  const canContinue = resumeData && githubData;
+const canContinue = resumeData && githubData
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
