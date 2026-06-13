@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Zap, BarChart2, Building2, BrainCircuit, Code2, ChevronUp } from 'lucide-react'
+import { Zap, BarChart2, BrainCircuit, Code2, ChevronUp, Briefcase } from 'lucide-react'
 
 const NAV_ITEMS = [
   { path: '/analyze', label: 'Profile',   icon: Zap         },
   { path: '/results', label: 'Results',   icon: BarChart2   },
   { path: '/prep',    label: 'AI Tools',  icon: BrainCircuit },
   { path: '/dsa',     label: 'DSA',       icon: Code2       },
+  { path: '/jobs',    label: 'Jobs',      icon: Briefcase   },
 ]
 
 export default function Navbar({ isAnalyzed }) {
@@ -24,7 +25,6 @@ export default function Navbar({ isAnalyzed }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // hide navbar on landing page
   if (location.pathname === '/') return null
 
   return (

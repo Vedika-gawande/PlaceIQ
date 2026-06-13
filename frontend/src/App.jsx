@@ -6,7 +6,7 @@ import Analyze from './pages/Analyze'
 import Results from './pages/Results'
 import Prep from './pages/Prep'
 import Dsa from './pages/Dsa'
-
+import Jobs from './pages/Jobs'
 const API_BASE = 'https://placeiq-ogr7.onrender.com'
 
 export default function App() {
@@ -73,6 +73,17 @@ export default function App() {
               : <Navigate to="/analyze" replace />
           }
         />
+        <Route
+  path="/jobs"
+  element={
+    isAnalyzed
+      ? <Jobs
+          apiBase={API_BASE}
+          resumeData={resumeData}
+        />
+      : <Navigate to="/analyze" replace />
+  }
+/>
       </Routes>
     </Router>
   )
