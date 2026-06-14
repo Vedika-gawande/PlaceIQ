@@ -28,15 +28,17 @@ def get_jobs(skills, location="india", results_per_page=10):
         
         jobs = []
         for job in data.get("results", []):
-            jobs.append({
-                "title": job.get("title"),
-                "company": job.get("company", {}).get("display_name"),
-                "location": job.get("location", {}).get("display_name"),
-                "salary_min": job.get("salary_min"),
-                "salary_max": job.get("salary_max"),
-                "description": job.get("description", "")[:200],
-                "url": job.get("redirect_url")
-            })
+           jobs.append({
+    "title": job.get("title"),
+    "company": job.get("company", {}).get("display_name"),
+    "location": job.get("location", {}).get("display_name"),
+    "salary_min": job.get("salary_min"),
+    "salary_max": job.get("salary_max"),
+    "description": job.get("description", "")[:200],
+    "url": job.get("redirect_url"),
+    "contract_time": job.get("contract_time", ""),  # full_time / part_time
+    "contract_type": job.get("contract_type", ""),  # permanent / contract
+})
         
         return {"jobs": jobs, "total": data.get("count", 0)}
     

@@ -4,10 +4,12 @@ import {
   MapPin, DollarSign, ChevronDown, ChevronUp,
   Briefcase, Tag, X, Building2, Filter
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function CompanyCards({ matches }) {
+  const navigate = useNavigate();
   const [expanded, setExpanded]       = useState({});
-  const [selected, setSelected]       = useState(null); // deep dive company
+  const [selected, setSelected]       = useState(null);
   const [domainFilter, setDomainFilter] = useState('all');
   const [typeFilter, setTypeFilter]   = useState('all');
   const [packageFilter, setPackageFilter] = useState('all');
@@ -21,14 +23,12 @@ export default function CompanyCards({ matches }) {
     );
   }
 
-  // parse min package from "8-12 LPA" → 8
   const parseMinPackage = (pkg) => {
     if (!pkg || pkg === 'N/A') return 0;
     const match = pkg.match(/(\d+)/);
     return match ? parseInt(match[1]) : 0;
   };
 
-  // filtered list
   const filtered = useMemo(() => {
     return matches.filter(m => {
       if (domainFilter  !== 'all' && m.domain !== domainFilter)  return false;
@@ -94,7 +94,6 @@ export default function CompanyCards({ matches }) {
             </FilterBtn>
           ))}
         </div>
-
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-3)', minWidth: '60px' }}>Type</span>
           {[['all','All'],['MNC','MNC'],['startup','Startup']].map(([val, label]) => (
@@ -103,7 +102,6 @@ export default function CompanyCards({ matches }) {
             </FilterBtn>
           ))}
         </div>
-
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-3)', minWidth: '60px' }}>Package</span>
           {[['all','All'],['20+','20+ LPA'],['10+','10+ LPA'],['under10','Under 10']].map(([val, label]) => (
@@ -112,7 +110,6 @@ export default function CompanyCards({ matches }) {
             </FilterBtn>
           ))}
         </div>
-
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-3)', minWidth: '60px' }}>Status</span>
           {[['all','All'],['shortlisted','Shortlisted'],['needs_work','Needs Work']].map(([val, label]) => (
@@ -121,7 +118,6 @@ export default function CompanyCards({ matches }) {
             </FilterBtn>
           ))}
         </div>
-
         <div style={{ fontSize: '0.72rem', color: 'var(--text-3)', marginTop: '2px' }}>
           Showing {filtered.length} of {matches.length} companies
         </div>
@@ -260,12 +256,20 @@ export default function CompanyCards({ matches }) {
                       </div>
                     </div>
                   )}
-                  <button
-                    onClick={() => setSelected(match)}
-                    style={{ alignSelf: 'flex-start', background: 'none', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '5px 14px', color: 'var(--text-2)', fontSize: '0.78rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.15s' }}
-                  >
-                    <Building2 size={12} /> View full details
-                  </button>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <button
+                      onClick={() => setSelected(match)}
+                      style={{ alignSelf: 'flex-start', background: 'none', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '5px 14px', color: 'var(--text-2)', fontSize: '0.78rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.15s' }}
+                    >
+                      <Building2 size={12} /> View full details
+                    </button>
+                    <button
+                      onClick={() => navigate('/jobs', { state: { company: match.company, skills: match.matched_skills } })}
+                      style={{ alignSelf: 'flex-start', background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 'var(--radius)', padding: '5px 14px', color: 'var(--accent)', fontSize: '0.78rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.15s' }}
+                    >
+                      <Briefcase size={12} /> Find Jobs
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
@@ -281,8 +285,8 @@ export default function CompanyCards({ matches }) {
   );
 }
 
-/* ── Deep Dive Modal ─────────────────────── */
 function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass }) {
+  const navigate = useNavigate();
   const dc = domainColor(company.domain);
 
   return (
@@ -294,15 +298,12 @@ function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass 
         onClick={e => e.stopPropagation()}
         style={{ background: 'var(--surface)', border: '1px solid var(--border-hover)', borderRadius: 'var(--radius-xl)', padding: '2rem', width: '100%', maxWidth: '580px', maxHeight: '85vh', overflowY: 'auto', boxShadow: '0 24px 64px rgba(0,0,0,0.6)', position: 'relative' }}
       >
-        {/* close */}
         <button
           onClick={onClose}
           style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'var(--surface-2)', border: '1px solid var(--border)', borderRadius: '50%', width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-2)' }}
         >
           <X size={14} />
         </button>
-
-        {/* HEADER */}
         <div style={{ marginBottom: '1.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
             <span style={{ fontSize: '0.7rem', fontWeight: 600, padding: '2px 10px', borderRadius: '999px', background: dc.bg, border: `1px solid ${dc.border}`, color: dc.color }}>
@@ -325,15 +326,11 @@ function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass 
             </span>
           </div>
         </div>
-
-        {/* MATCH PROGRESS */}
         <div style={{ marginBottom: '1.5rem' }}>
           <div className="progress-wrap">
             <div className={`progress-bar ${getBarClass(company.match_percent)}`} style={{ width: `${company.match_percent}%` }} />
           </div>
         </div>
-
-        {/* INFO GRID */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '1.5rem' }}>
           {[
             { label: 'Package',   value: company.avg_package || 'N/A',          icon: '💰' },
@@ -349,8 +346,6 @@ function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass 
             </div>
           ))}
         </div>
-
-        {/* INTERVIEW ROUNDS */}
         {company.hiring_rounds?.length > 0 && (
           <div style={{ marginBottom: '1.5rem' }}>
             <p style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.75rem' }}>
@@ -368,10 +363,7 @@ function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass 
             </div>
           </div>
         )}
-
-        {/* SKILLS SECTION */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          {/* required */}
           <div>
             <p style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.5rem' }}>
               Required Skills
@@ -381,8 +373,6 @@ function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass 
               {company.missing_skills?.map(s => <span key={s} className="pill pill-red">{s}</span>)}
             </div>
           </div>
-
-          {/* good to have */}
           {company.bonus_skills?.length > 0 && (
             <div>
               <p style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.5rem' }}>
@@ -393,8 +383,6 @@ function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass 
               </div>
             </div>
           )}
-
-          {/* missing */}
           {company.missing_skills?.length > 0 && (
             <div style={{ background: 'rgba(248,113,113,0.04)', border: '1px solid rgba(248,113,113,0.12)', borderRadius: 'var(--radius)', padding: '1rem' }}>
               <p style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--danger)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.5rem' }}>
@@ -405,6 +393,31 @@ function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass 
               </div>
             </div>
           )}
+          {/* FIND JOBS BUTTON */}
+<button
+  onClick={() => {
+    onClose();
+    navigate('/jobs', { state: { company: company.company, skills: company.matched_skills } });
+  }}
+  style={{
+    marginTop: '1rem',
+    width: '100%',
+    background: 'rgba(34,197,94,0.1)',
+    border: '1px solid rgba(34,197,94,0.3)',
+    borderRadius: 'var(--radius)',
+    padding: '10px 14px',
+    color: 'var(--accent)',
+    fontSize: '0.85rem',
+    fontWeight: 600,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '6px'
+  }}
+>
+  <Briefcase size={14} /> Find Jobs at {company.company}
+</button>
         </div>
       </div>
     </div>
