@@ -34,8 +34,7 @@ export default function Jobs({ apiBase, resumeData }) {
       <h1 className="text-3xl font-bold text-indigo-400 mb-2">Job Listings</h1>
       <p className="text-gray-400 mb-6">Based on your skills from resume</p>
 
-      {/* Location Filter */}
-      <div className="flex gap-3 mb-8">
+      <div className="flex gap-3 mb-8 flex-wrap">
         {["india", "bangalore", "mumbai", "hyderabad", "pune"].map((loc) => (
           <button
             key={loc}
@@ -57,7 +56,6 @@ export default function Jobs({ apiBase, resumeData }) {
         </button>
       </div>
 
-      {/* Jobs List */}
       {loading && <p className="text-gray-400">Loading jobs...</p>}
       {error && <p className="text-red-400">{error}</p>}
 
@@ -72,7 +70,7 @@ export default function Jobs({ apiBase, resumeData }) {
               </div>
               {job.salary_min && (
                 <div className="text-right text-sm text-gray-400">
-                  ₹{Math.round(job.salary_min / 100000)}L - ₹{Math.round(job.salary_max / 100000)}L
+                  Rs.{Math.round(job.salary_min / 100000)}L - Rs.{Math.round(job.salary_max / 100000)}L
                 </div>
               )}
             </div>
@@ -82,8 +80,8 @@ export default function Jobs({ apiBase, resumeData }) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-4 px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm rounded-lg"
-            >
-              Apply Now →
+            <a>
+              Apply Now
             </a>
           </div>
         ))}
