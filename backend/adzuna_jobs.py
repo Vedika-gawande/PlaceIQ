@@ -4,23 +4,25 @@ import requests
 ADZUNA_APP_ID = os.getenv("ADZUNA_APP_ID")
 ADZUNA_API_KEY = os.getenv("ADZUNA_API_KEY")
 
-def get_jobs(skills, location="india", results_per_page=10):
+def get_jobs(skills, location="india", company="", results_per_page=10):
     if not ADZUNA_APP_ID or not ADZUNA_API_KEY:
         return {"error": "Adzuna credentials missing"}
 
-    # Skills madhu top 3 gheu query banavu
-    query = " ".join(skills[:3]) if skills else "software developer"
+    # Company + skills sobat query
+    skill_query = " ".join(skills[:2]) if skills else "software developer"
+    query = f"{company} {skill_query}".strip() if company else skill_query
 
     url = f"https://api.adzuna.com/v1/api/jobs/in/search/1"
     
     params = {
-        "app_id": ADZUNA_APP_ID,
-        "app_key": ADZUNA_API_KEY,
-        "results_per_page": results_per_page,
-        "what": query,
-        "where": location,
-        "content-type": "application/json"
-    }
+    "app_id": ADZUNA_APP_ID,
+    "app_key": ADZUNA_API_KEY,
+    "results_per_page": results_per_page,
+    "what": skill_query,      # skills only
+    "where": location,
+    "company": company,        # ← he add kar separate parameter
+    "content-type": "application/json"
+}
 
     try:
         response = requests.get(url, params=params)

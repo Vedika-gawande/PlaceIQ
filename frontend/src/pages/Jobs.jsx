@@ -32,7 +32,7 @@ export default function Jobs({ apiBase, resumeData }) {
       const data = await res.json();
       setJobs(data.jobs || []);
     } catch (err) {
-      setError("Can't fetch job. Try again!");
+      setError("Jobs fetch karta aala nahi. Try again!");
     } finally {
       setLoading(false);
     }
@@ -47,130 +47,173 @@ export default function Jobs({ apiBase, resumeData }) {
     return detectJobType(job.title, job.description) === typeFilter;
   });
 
-  const typeColors = {
-    "full-time": { bg: "rgba(34,197,94,0.08)", border: "rgba(34,197,94,0.2)", color: "var(--accent)" },
-    "part-time": { bg: "rgba(251,191,36,0.08)", border: "rgba(251,191,36,0.2)", color: "#FCD34D" },
-    "internship": { bg: "rgba(99,102,241,0.08)", border: "rgba(99,102,241,0.2)", color: "#818CF8" },
-    "contract": { bg: "rgba(249,115,22,0.08)", border: "rgba(249,115,22,0.2)", color: "#FB923C" },
+  const typeConfig = {
+    "full-time":  { label: "Full Time",  bg: "rgba(34,197,94,0.1)",  border: "rgba(34,197,94,0.25)",  color: "#4ADE80" },
+    "part-time":  { label: "Part Time",  bg: "rgba(251,191,36,0.1)", border: "rgba(251,191,36,0.25)", color: "#FCD34D" },
+    "internship": { label: "Internship", bg: "rgba(99,102,241,0.1)", border: "rgba(99,102,241,0.25)", color: "#818CF8" },
+    "contract":   { label: "Contract",   bg: "rgba(249,115,22,0.1)", border: "rgba(249,115,22,0.25)", color: "#FB923C" },
   };
 
-  return (
-    <div style={{ minHeight: "100vh", background: "var(--bg)", padding: "5rem 2rem 2rem", maxWidth: "900px", margin: "0 auto" }}>
-      <h1 style={{ fontFamily: "Syne, sans-serif", fontSize: "2rem", fontWeight: 800, color: "var(--text)", marginBottom: "0.5rem" }}>
-        Job Listings
-      </h1>
-      {stateData?.company && (
-        <p style={{ color: "var(--accent)", fontSize: "0.85rem", marginBottom: "0.5rem" }}>
-          Showing jobs for: <strong>{stateData.company}</strong>
-        </p>
-      )}
-      <p style={{ color: "var(--text-3)", fontSize: "0.85rem", marginBottom: "1.5rem" }}>
-        Based on your matched skills � {filteredJobs.length} jobs found
-      </p>
+  const getInitials = (name) => {
+    if (!name) return "?";
+    return name.split(" ").map(w => w[0]).join("").toUpperCase().slice(0, 2);
+  };
 
-      {/* Location Filter */}
-      <div style={{ marginBottom: "0.75rem" }}>
-        <p style={{ fontSize: "0.72rem", fontWeight: 600, color: "var(--text-3)", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.06em" }}>Location</p>
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-          {["india", "bangalore", "mumbai", "hyderabad", "pune"].map((loc) => (
-            <button
-              key={loc}
-              onClick={() => setLocation(loc)}
-              style={{
-                padding: "5px 14px",
-                borderRadius: "999px",
-                border: location === loc ? "1px solid rgba(34,197,94,0.4)" : "1px solid var(--border)",
-                background: location === loc ? "rgba(34,197,94,0.1)" : "var(--surface-2)",
-                color: location === loc ? "var(--accent)" : "var(--text-3)",
-                fontSize: "0.78rem",
-                fontWeight: 600,
-                cursor: "pointer",
-                textTransform: "capitalize"
-              }}
-            >
-              {loc}
-            </button>
-          ))}
-        </div>
-      </div>
+  const getCompanyColor = (name) => {
+    const colors = ["#6366F1","#8B5CF6","#EC4899","#F59E0B","#10B981","#3B82F6","#EF4444","#14B8A6"];
+    if (!name) return colors[0];
+    return colors[name.charCodeAt(0) % colors.length];
+  };
 
-      {/* Job Type Filter */}
-      <div style={{ marginBottom: "2rem" }}>
-        <p style={{ fontSize: "0.72rem", fontWeight: 600, color: "var(--text-3)", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.06em" }}>Job Type</p>
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-          {["all", "full-time", "part-time", "internship", "contract"].map((type) => (
-            <button
-              key={type}
-              onClick={() => setTypeFilter(type)}
-              style={{
-                padding: "5px 14px",
-                borderRadius: "999px",
-                border: typeFilter === type ? "1px solid rgba(99,102,241,0.4)" : "1px solid var(--border)",
-                background: typeFilter === type ? "rgba(99,102,241,0.1)" : "var(--surface-2)",
-                color: typeFilter === type ? "#818CF8" : "var(--text-3)",
-                fontSize: "0.78rem",
-                fontWeight: 600,
-                cursor: "pointer",
-                textTransform: "capitalize"
-              }}
-            >
-              {type === "all" ? "All Types" : type}
-            </button>
-          ))}
-        </div>
-      </div>
+return (
+    <div className="page-enter" style={{ minHeight: "100vh", background: "var(--bg)" }}>
+      {/* HEADER */}
+      <div style={{ borderBottom: "1px solid var(--border)", background: "rgba(11,15,20,0.95)", backdropFilter: "blur(16px)", position: "sticky", top: "56px", zIndex: 90, padding: "1.25rem 2rem" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+          <div style={{ marginBottom: "1rem" }}>
+            <h1 style={{ fontFamily: "Syne, sans-serif", fontSize: "1.5rem", fontWeight: 800, color: "var(--text)", marginBottom: "2px" }}>
+  Job Listings
+</h1>
+<p style={{ color: "var(--text-3)", fontSize: "0.8rem" }}>
+  Based on your matched skills • {filteredJobs.length} opportunities found
+</p>
+          </div>
 
-      {loading && (
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          {[1,2,3].map(i => (
-            <div key={i} style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "var(--radius-xl)", padding: "1.25rem 1.5rem", opacity: 0.5 }}>
-              <div style={{ height: "1rem", width: "60%", background: "var(--surface-2)", borderRadius: "4px", marginBottom: "0.5rem" }} />
-              <div style={{ height: "0.75rem", width: "30%", background: "var(--surface-2)", borderRadius: "4px" }} />
+          <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
+            {/* Location */}
+            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center" }}>
+              <span style={{ fontSize: "0.72rem", color: "var(--text-3)", fontWeight: 600 }}>Location:</span>
+              {["india", "bangalore", "mumbai", "hyderabad", "pune"].map((loc) => (
+                <button key={loc} onClick={() => setLocation(loc)} style={{
+                  padding: "4px 12px", borderRadius: "6px",
+                  border: location === loc ? "1px solid rgba(34,197,94,0.4)" : "1px solid var(--border)",
+                  background: location === loc ? "rgba(34,197,94,0.1)" : "transparent",
+                  color: location === loc ? "var(--accent)" : "var(--text-3)",
+                  fontSize: "0.75rem", fontWeight: 600, cursor: "pointer", textTransform: "capitalize",
+                  transition: "all 0.15s"
+                }}>
+                  {loc}
+                </button>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
-      {error && <p style={{ color: "var(--danger)" }}>{error}</p>}
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-        {filteredJobs.map((job, i) => {
-          const jobType = detectJobType(job.title, job.description);
-          const tc = typeColors[jobType] || typeColors["full-time"];
-          return (
-            <div key={i} style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "var(--radius-xl)", padding: "1.25rem 1.5rem", transition: "border-color 0.2s" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "8px" }}>
+            {/* Job Type */}
+            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center" }}>
+              <span style={{ fontSize: "0.72rem", color: "var(--text-3)", fontWeight: 600 }}>Type:</span>
+              {["all", "full-time", "part-time", "internship", "contract"].map((type) => (
+                <button key={type} onClick={() => setTypeFilter(type)} style={{
+                  padding: "4px 12px", borderRadius: "6px",
+                  border: typeFilter === type ? "1px solid rgba(99,102,241,0.4)" : "1px solid var(--border)",
+                  background: typeFilter === type ? "rgba(99,102,241,0.1)" : "transparent",
+                  color: typeFilter === type ? "#818CF8" : "var(--text-3)",
+                  fontSize: "0.75rem", fontWeight: 600, cursor: "pointer", textTransform: "capitalize",
+                  transition: "all 0.15s"
+                }}>
+                  {type === "all" ? "All" : type}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* MAIN CONTENT */}
+      <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "1.5rem 2rem" }}>
+
+        {/* SKELETON */}
+        {loading && (
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {[1,2,3,4,5].map(i => (
+              <div key={i} style={{ borderBottom: "1px solid var(--border)", padding: "1.25rem 0", display: "flex", gap: "1rem" }}>
+                <div style={{ width: "44px", height: "44px", borderRadius: "10px", background: "var(--surface-2)", flexShrink: 0 }} />
                 <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px", flexWrap: "wrap" }}>
-                    <h2 style={{ fontFamily: "Syne, sans-serif", fontSize: "1rem", fontWeight: 700, color: "var(--text)" }}>
-                      {job.title}
-                    </h2>
-                    <span style={{ fontSize: "0.68rem", fontWeight: 600, padding: "2px 8px", borderRadius: "999px", background: tc.bg, border: "1px solid " + tc.border, color: tc.color, textTransform: "capitalize", whiteSpace: "nowrap" }}>
-                      {jobType}
-                    </span>
-                  </div>
-                  <p style={{ color: "var(--accent)", fontSize: "0.82rem", fontWeight: 600 }}>{job.company}</p>
-                  <p style={{ color: "var(--text-3)", fontSize: "0.78rem", marginTop: "2px" }}>?? {job.location}</p>
+                  <div style={{ height: "0.9rem", width: "40%", background: "var(--surface-2)", borderRadius: "4px", marginBottom: "8px" }} />
+                  <div style={{ height: "0.75rem", width: "25%", background: "var(--surface-2)", borderRadius: "4px", marginBottom: "8px" }} />
+                  <div style={{ height: "0.7rem", width: "70%", background: "var(--surface-2)", borderRadius: "4px" }} />
                 </div>
-                {job.salary_min && job.salary_min > 0 && (
-                  <div style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)", borderRadius: "999px", padding: "4px 12px", fontSize: "0.75rem", fontWeight: 600, color: "var(--accent)", whiteSpace: "nowrap" }}>
-                   ₹ {Math.round(job.salary_min / 100000)}L - ₹{Math.round(job.salary_max / 100000)}L
-                  </div>
-                )}
               </div>
-              <p style={{ color: "var(--text-3)", fontSize: "0.8rem", marginTop: "0.75rem", lineHeight: 1.6 }}>
-                {job.description}...
-              </p>
-              <a href={job.url} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: "1rem", padding: "6px 16px", background: "linear-gradient(135deg, #22C55E 0%, #16A34A 100%)", color: "#fff", borderRadius: "999px", fontSize: "0.78rem", fontWeight: 600, textDecoration: "none" }}>
-                Apply Now ?
-              </a>
-            </div>
-          );
-        })}
-      </div>
+            ))}
+          </div>
+        )}
 
-      {!loading && filteredJobs.length === 0 && (
-        <p style={{ color: "var(--text-3)", marginTop: "2rem" }}>No jobs found. Try different filters!</p>
-      )}
+        {error && (
+          <div style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.2)", borderRadius: "10px", padding: "1rem", color: "var(--danger)", fontSize: "0.85rem" }}>
+            {error}
+          </div>
+        )}
+
+        {/* JOB LIST */}
+        {!loading && (
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {filteredJobs.map((job, i) => {
+              const jobType = detectJobType(job.title, job.description);
+              const tc = typeConfig[jobType] || typeConfig["full-time"];
+              const initials = getInitials(job.company);
+              const companyColor = getCompanyColor(job.company);
+
+              return (
+                <div
+                  key={i}
+                  style={{ display: "flex", gap: "1rem", alignItems: "flex-start", padding: "1.25rem 0.5rem", borderBottom: "1px solid var(--border)", transition: "background 0.15s" }}
+                  onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.02)"}
+                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                >
+                  {/* Logo */}
+                  <div style={{ width: "44px", height: "44px", borderRadius: "10px", background: companyColor + "22", border: "1px solid " + companyColor + "44", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.75rem", fontWeight: 800, color: companyColor, flexShrink: 0, fontFamily: "Syne, sans-serif" }}>
+                    {initials}
+                  </div>
+
+                  {/* Info */}
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+                      <div>
+                        <h2 style={{ fontFamily: "Syne, sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)", marginBottom: "3px", lineHeight: 1.3 }}>
+                          {job.title}
+                        </h2>
+                        <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "var(--accent)", marginBottom: "6px" }}>
+                          {job.company}
+                        </p>
+                        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" }}>
+                          <span style={{ fontSize: "0.72rem", color: "var(--text-3)" }}>
+                            {job.location}
+                          </span>
+                          <span style={{ fontSize: "0.68rem", fontWeight: 700, padding: "2px 8px", borderRadius: "4px", background: tc.bg, border: "1px solid " + tc.border, color: tc.color, textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                            {tc.label}
+                          </span>
+                          {job.salary_min && job.salary_min > 0 && (
+                            <span style={{ fontSize: "0.72rem", fontWeight: 600, color: "var(--text-2)" }}>
+                              Rs.{Math.round(job.salary_min / 100000)}L - Rs.{Math.round(job.salary_max / 100000)}L
+                            </span>
+                          )}
+                        </div>
+                      </div><a
+                        href={job.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ padding: "7px 18px", background: "transparent", border: "1px solid var(--border)", borderRadius: "8px", color: "var(--text-2)", fontSize: "0.78rem", fontWeight: 600, textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0 }}
+                        onMouseEnter={e => { e.currentTarget.style.background = "rgba(34,197,94,0.1)"; e.currentTarget.style.borderColor = "rgba(34,197,94,0.4)"; e.currentTarget.style.color = "var(--accent)"; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-2)"; }}
+                      >
+                        Apply
+                      </a>
+                    </div>
+<p style={{ color: "var(--text-3)", fontSize: "0.78rem", marginTop: "8px", lineHeight: 1.6 }}>
+                      {job.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {!loading && filteredJobs.length === 0 && (
+          <div style={{ textAlign: "center", padding: "4rem 0", color: "var(--text-3)" }}>
+            <p style={{ fontFamily: "Syne, sans-serif", fontSize: "1rem", fontWeight: 600, color: "var(--text-2)", marginBottom: "0.5rem" }}>No jobs found</p>
+            <p style={{ fontSize: "0.82rem" }}>Try different location or job type filters</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

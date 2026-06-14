@@ -43,8 +43,14 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: all 0.3s ease;  /* ← he add kar */
 }
-
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+  scroll-behavior: smooth;
+}
 /* layered ambient glow */
 body::before {
   content: '';
@@ -652,4 +658,14 @@ body::after {
   .stats-row {
     gap: 0.5rem;
   }
+}
+
+/* ── PAGE TRANSITIONS ─────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: fadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
