@@ -264,7 +264,12 @@ export default function CompanyCards({ matches }) {
                       <Building2 size={12} /> View full details
                     </button>
                     <button
-onClick={() => navigate('/jobs', { state: { skills: match.matched_skills } })}
+                    onClick={() => navigate('/jobs', { 
+                    state: { 
+                    skills: match.matched_skills,  // ya jo skills field aahe tyacha naam
+                    company: match.name 
+                    } 
+                  })}
                       style={{ alignSelf: 'flex-start', background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 'var(--radius)', padding: '5px 14px', color: 'var(--accent)', fontSize: '0.78rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.15s' }}
                     >
                       <Briefcase size={12} /> Find Jobs
@@ -395,10 +400,12 @@ function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass 
           )}
           {/* FIND JOBS BUTTON */}
 <button
-  onClick={() => {
-    onClose();
-    navigate('/jobs', { state: { company: company.company, skills: company.matched_skills } });
-  }}
+ onClick={() => navigate('/jobs', { 
+  state: { 
+    skills: match.matched_skills,
+    company: match.company  // ✅ 'name' → 'company'
+  } 
+})}
   style={{
     marginTop: '1rem',
     width: '100%',
