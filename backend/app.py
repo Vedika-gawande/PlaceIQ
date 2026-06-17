@@ -113,7 +113,9 @@ def jobs():
     skills = data.get("skills", [])
     location = data.get("location", "india")
     
-    return jsonify(get_jobs(skills, location))
+    companies = data.get("company", "")
+    return jsonify(get_jobs(skills, location, companies))
+
 # ── RUN ──────────────────────────────────────────────
 if __name__ == "__main__":
     debug = os.getenv("FLASK_ENV") == "development"

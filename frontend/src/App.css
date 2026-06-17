@@ -16,7 +16,9 @@
     outline-offset: 2px;
   }
 }
-
+* {
+  scroll-behavior: smooth;
+}
 .hero {
   position: relative;
 

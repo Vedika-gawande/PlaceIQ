@@ -400,12 +400,15 @@ function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass 
           )}
           {/* FIND JOBS BUTTON */}
 <button
- onClick={() => navigate('/jobs', { 
-  state: { 
-    skills: match.matched_skills,
-    company: match.company  // ✅ 'name' → 'company'
-  } 
-})}
+  onClick={() => {
+    onClose();
+    navigate('/jobs', { 
+      state: { 
+        skills: company.matched_skills,   // ✅ match → company
+        company: match.company           // ✅ match → company
+      } 
+    });
+  }}
   style={{
     marginTop: '1rem',
     width: '100%',

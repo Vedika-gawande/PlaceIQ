@@ -7,9 +7,8 @@ const API_BASE = import.meta.env.VITE_API_BASE || 'https://placeiq-ogr7.onrender
 export default function DSA() {
   const navigate = useNavigate();
 
-  return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-
+ return (
+    <div className="page-enter" style={{ minHeight: "100vh", background: "var(--bg)" }}>
       {/* NAV */}
       <nav style={{ padding: '1.25rem 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '1160px', margin: '0 auto', borderBottom: '1px solid var(--border)', position: 'sticky', top: 0, background: 'rgba(11,15,20,0.92)', backdropFilter: 'blur(16px)', zIndex: 99 }}>
         <span onClick={() => navigate('/')} style={{ fontFamily: 'Syne, sans-serif', fontSize: '1.2rem', fontWeight: 800, letterSpacing: '-0.02em', cursor: 'pointer' }}>
