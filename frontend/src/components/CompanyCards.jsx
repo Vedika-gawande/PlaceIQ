@@ -405,7 +405,7 @@ function DeepDive({ company, onClose, domainColor, getPercentColor, getBarClass 
     navigate('/jobs', { 
       state: { 
         skills: company.matched_skills,   // ✅ match → company
-        company: match.company           // ✅ match → company
+        company: company.company           // ✅ match → company
       } 
     });
   }}
