@@ -66,10 +66,8 @@ export default function Jobs({ apiBase, resumeData }) {
   };
 
 return (
-    <div className="page-enter" style={{ minHeight: "100vh", background: "var(--bg)" }}>
-      {/* HEADER */}
-      <div style={{ borderBottom: "1px solid var(--border)", background: "rgba(11,15,20,0.95)", backdropFilter: "blur(16px)", position: "sticky", top: "56px", zIndex: 90, padding: "1.25rem 2rem" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+<div className="page-enter" style={{ minHeight: "100vh", background: "var(--bg)", paddingTop: "56px" }}>      {/* HEADER */}
+<div style={{ borderBottom: "1px solid var(--border)", background: "rgba(11,15,20,0.95)", backdropFilter: "blur(16px)", position: "sticky", top: "56px", zIndex: 90, padding: "1.25rem 2rem" }}>        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
           <div style={{ marginBottom: "1rem" }}>
             <h1 style={{ fontFamily: "Syne, sans-serif", fontSize: "1.5rem", fontWeight: 800, color: "var(--text)", marginBottom: "2px" }}>
   Job Listings
