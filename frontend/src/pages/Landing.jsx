@@ -49,7 +49,7 @@ export default function Landing() {
           onClick={() => navigate('/analyze')}
           style={{ background: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)', color: '#fff', border: 'none', borderRadius: '12px', padding: '0.9rem 2.5rem', fontSize: '1rem', fontWeight: 700, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'Syne, sans-serif', boxShadow: '0 4px 24px rgba(34,197,94,0.3)', transition: 'all 0.2s' }}
         >
-          Analyze My Profile <ArrowRight size={18} />
+          Analyze My Profile
         </button>
 
         {/* STATS */}
@@ -105,7 +105,7 @@ export default function Landing() {
           onClick={() => navigate('/analyze')}
           style={{ background: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)', color: '#fff', border: 'none', borderRadius: '12px', padding: '0.9rem 2.5rem', fontSize: '1rem', fontWeight: 700, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'Syne, sans-serif', boxShadow: '0 4px 24px rgba(34,197,94,0.3)' }}
         >
-          Get Started Free <ArrowRight size={18} />
+          Get Started Free 
         </button>
       </div>
     </div>
