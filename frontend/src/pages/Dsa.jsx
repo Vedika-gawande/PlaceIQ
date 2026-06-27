@@ -42,11 +42,11 @@ export default function DSA() {
         <DSATracker apiBase={API_BASE} />
 
         <button
-          onClick={() => navigate('/prep')}
-          style={{ marginTop: '1.5rem', width: '100%', background: 'var(--surface-2)', color: 'var(--text-2)', border: '1px solid var(--border)', borderRadius: '12px', padding: '0.85rem', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontFamily: 'Syne, sans-serif' }}
-        >
-          <ArrowLeft size={16} /> Back to AI Prep
-        </button>
+  onClick={() => navigate('/Jobs')}
+  style={{ marginTop: '1.5rem', width: '100%', background: '#16a34a', color: '#ffffff', border: '1px solid #15803d', borderRadius: '12px', padding: '0.85rem', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontFamily: 'Syne, sans-serif' }}
+>
+  Move to jobs page
+</button>
       </div>
     </div>
   );
