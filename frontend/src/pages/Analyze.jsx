@@ -86,7 +86,7 @@ const canContinue = resumeData && githubData
             transition: 'all 0.2s',
           }}
         >
-          {canContinue ? <>View My Results <ArrowRight size={18} /></> : 'Complete both steps to continue'}
+          {canContinue ? <>View My Results </> : 'Complete both steps to continue'}
         </button>
 
         {!canContinue && (
