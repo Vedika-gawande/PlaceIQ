@@ -86,10 +86,10 @@ useEffect(() => {
         {/* NAVIGATION */}
         <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
           <button onClick={() => navigate('/results')} style={{ flex: 1, background: 'var(--surface-2)', color: 'var(--text-2)', border: '1px solid var(--border)', borderRadius: '12px', padding: '0.85rem', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontFamily: 'Syne, sans-serif' }}>
-            <ArrowLeft size={16} /> Back to Results
+             Back to Results
           </button>
           <button onClick={() => navigate('/dsa')} style={{ flex: 2, background: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)', color: '#fff', border: 'none', borderRadius: '12px', padding: '0.85rem', fontSize: '0.9rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontFamily: 'Syne, sans-serif', boxShadow: '0 4px 20px rgba(34,197,94,0.25)' }}>
-            DSA Tracker <ArrowRight size={16} />
+            DSA Tracker 
           </button>
         </div>
       </div>
