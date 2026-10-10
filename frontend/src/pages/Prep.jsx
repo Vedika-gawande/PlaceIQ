@@ -6,7 +6,7 @@ import MockInterview from '../components/MockInterview';
 import SkillRoadmap from '../components/SkillRoadmap';
 import ResumeTips from '../components/ResumeTips';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:5000';
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://placeiq-ogr7.onrender.com';
 
 export default function Prep({ resumeData, githubData, matchResults }) {
   const navigate = useNavigate();
