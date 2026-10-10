@@ -669,3 +669,110 @@ body::after {
 .page-enter {
   animation: fadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
+/* Additional responsive improvements for PlaceIQ */
+
+html {
+  width: 100%;
+  overflow-x: clip;
+}
+
+body,
+#root {
+  width: 100%;
+  min-width: 0;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+/* Prevent grid and flex children from forcing overflow */
+.app-container,
+.card,
+.subcard,
+.section,
+.grid-2,
+.match-skills-row {
+  min-width: 0;
+}
+
+/* Tablet and smaller screens */
+@media (max-width: 768px) {
+  .app-container {
+    width: 100%;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .grid-2,
+  .match-skills-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .match-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .stats-row {
+    flex-wrap: wrap;
+  }
+
+  .stat-box {
+    min-width: 0;
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+    font-size: 16px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .app-container {
+    padding: 1rem 0.75rem 2rem;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .header h1 {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+    overflow-wrap: anywhere;
+  }
+
+  .header p {
+    max-width: 100%;
+    padding-inline: 0.25rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .match-card,
+  .subcard {
+    padding: 1rem;
+  }
+
+  .match-company {
+    overflow-wrap: anywhere;
+  }
+
+  .pill-row {
+    flex-wrap: wrap;
+  }
+}

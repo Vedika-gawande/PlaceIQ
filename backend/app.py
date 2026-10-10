@@ -1,4 +1,10 @@
 import os
+from dotenv import load_dotenv, find_dotenv
+
+print("found .env at:", repr(find_dotenv()))
+print("load_dotenv returned:", load_dotenv())
+print("GIT-related vars:", [k for k in os.environ if "GIT" in k.upper()]) # must run before the imports below read any env vars
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -11,6 +17,7 @@ from mock_interview import get_mock_questions
 from skill_roadmap import get_skill_roadmap
 from leetcode_analyzer import analyze_leetcode
 from adzuna_jobs import get_jobs
+
 
 app = Flask(__name__)
 

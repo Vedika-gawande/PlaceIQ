@@ -1,72 +1,129 @@
+
 import os
 import json
 from groq import Groq
 from dotenv import load_dotenv
+
 load_dotenv()
 
+
 def get_skill_roadmap(data):
-    """
-    For each missing skill, generates a learning roadmap.
-    Input: {
-        "missing_skills": ["data structures", "docker", "mongodb"],
-        "target_companies": ["Deutsche Bank", "Zepto"],
-        "skills": ["python", "java", "sql"]
-    }
-    """
-    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-
-    missing_skills    = data.get("missing_skills", [])
-    target_companies  = data.get("target_companies", [])
-    existing_skills   = data.get("skills", [])
-
-    if not missing_skills:
-        return {"success": False, "error": "No missing skills found"}
-
-    # limit to top 6 most important gaps
-    skills_to_analyze = missing_skills[:6]
-
-    prompt = f"""You are a senior placement coach helping a CS engineering student prepare for tech placements.
-
-Student profile:
-- Already knows: {', '.join(existing_skills)}
-- Missing skills: {', '.join(skills_to_analyze)}
-- Target companies: {', '.join(target_companies) if target_companies else 'top tech companies'}
-
-For each missing skill, create a focused learning roadmap.
-
-Respond ONLY as a JSON array, no markdown, no extra text:
-[
-  {{
-    "skill": "data structures",
-    "priority": "high",
-    "why_needed": "one sentence — which companies need it and why",
-    "time_to_learn": "4-6 weeks",
-    "topics": ["Arrays & Strings", "Linked Lists", "Trees & Graphs", "Dynamic Programming"],
-    "resources": [
-      {{"name": "Striver's DSA Sheet", "type": "free", "url": "https://takeuforward.org"}},
-      {{"name": "Neetcode 150", "type": "free", "url": "https://neetcode.io"}}
-    ],
-    "companies_unlocked": ["Deutsche Bank", "Flipkart", "Amazon"]
-  }}
-]
-
-Generate one object per skill. Keep resources real and free wherever possible.
-"""
+    """Generate a learning roadmap for missing skills."""
 
     try:
+        api_key = os.getenv("GROQ_API_KEY")
+        if not api_key:
+            raise ValueError("GROQ_API_KEY is missing")
+
+        client = Groq(api_key=api_key)
+
+        missing_skills = data.get("missing_skills", [])
+        target_companies = data.get("target_companies", [])
+        existing_skills = data.get("skills", [])
+
+        if not missing_skills:
+            return {
+                "success": False,
+                "error": "No missing skills found"
+            }
+
+        skills_to_analyze = missing_skills[:6]
+
+        prompt = f"""
+You are a senior placement coach helping a CS engineering
+student prepare for technology placements.
+
+Already knows: {', '.join(existing_skills)}
+Missing skills: {', '.join(skills_to_analyze)}
+Target companies: {', '.join(target_companies) if target_companies else 'top tech companies'}
+
+Return one JSON object with a "roadmap" array.
+Include exactly one roadmap item for each missing skill.
+
+Each item must have:
+- skill: string
+- priority: "high", "medium", or "low"
+- why_needed: one concise sentence
+- time_to_learn: estimated duration
+- topics: array of 3-5 topic strings
+- resources: array of 2 resources, each with name, type, url
+- companies_unlocked: array of company names
+
+Use real resource URLs. Keep every field concise.
+Return valid JSON only, without Markdown.
+
+Required structure:
+{{
+  "roadmap": [
+    {{
+      "skill": "Data Structures",
+      "priority": "high",
+      "why_needed": "Important for coding interviews.",
+      "time_to_learn": "4-6 weeks",
+      "topics": ["Arrays", "Linked Lists", "Trees"],
+      "resources": [
+        {{
+          "name": "Striver's DSA Sheet",
+          "type": "free",
+          "url": "https://takeuforward.org"
+        }},
+        {{
+          "name": "NeetCode",
+          "type": "free",
+          "url": "https://neetcode.io"
+        }}
+      ],
+      "companies_unlocked": ["Deutsche Bank", "Amazon"]
+    }}
+  ]
+}}
+"""
+
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=2000,
-            temperature=0.6
+            model="openai/gpt-oss-20b",
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "Output only valid JSON. "
+                        "Follow the requested schema exactly. "
+                        "Do not include Markdown fences or extra text."
+                    )
+                },
+                {"role": "user", "content": prompt}
+            ],
+            response_format={"type": "json_object"},
+            max_tokens=4000,
+            temperature=0.2
         )
 
-        raw   = response.choices[0].message.content
-        clean = raw.strip().replace("```json", "").replace("```", "").strip()
-        roadmap = json.loads(clean)
-        return {"success": True, "roadmap": roadmap}
+        raw = response.choices[0].message.content or ""
+        result = json.loads(raw)
+
+        # Accept the expected object format.
+        roadmap = result.get("roadmap") if isinstance(result, dict) else None
+
+        if not isinstance(roadmap, list):
+            raise ValueError("AI response must contain a roadmap array")
+
+        return {
+            "success": True,
+            "roadmap": roadmap
+        }
 
     except json.JSONDecodeError as e:
-        return {"success": False, "error": "Failed to parse response", "message": str(e)}
+        print("Roadmap JSON parsing error:", repr(e))
+        print("Raw response:", repr(raw) if "raw" in locals() else "No response")
+        return {
+            "success": False,
+            "error": "Failed to parse response",
+            "message": str(e)
+        }
+
     except Exception as e:
-        return {"success": False, "error": "Failed to generate roadmap", "message": str(e)}
+        print("Roadmap generation error:", repr(e))
+        return {
+            "success": False,
+            "error": "Failed to generate roadmap",
+            "message": str(e)
+        }
